@@ -1,7 +1,6 @@
 *{
     box-sizing: border-box;
 }
-
 body {
     background-color: #3a444e;
     color: #fff;
@@ -11,7 +10,6 @@ body {
     align-items: center;
     overflow: hidden;
 }
-
 .container{
     padding: 20px 20px;
     height: 450px;
@@ -55,8 +53,6 @@ body {
     bottom: 10px;
     left: 50%;
     transform: translateX(-50%);
-
-
 }
 .letter{
     border-bottom: 3px solid yellow;
