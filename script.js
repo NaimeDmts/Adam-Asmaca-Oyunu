@@ -1,8 +1,10 @@
 const word_el = document.getElementById('word');
 const popup = document.getElementById('popup-container');
+const popup_hata = document.querySelector('.popup');
 const message_el = document.getElementById('success-message');
 const wrongLetters_el = document.getElementById('wrong-letters');
 const items = document.querySelectorAll('.item');
+const message = document.getElementById('message');
 
 const correctLetters = [];
 const wrongLetters = [];
@@ -24,7 +26,7 @@ function displayWord(){
     const w = word_el.innerText.replace(/\n/g,'');
     if(w === selectedWord){
         popup.style.display = 'flex';
-        message_el.innerText = 'Tebrikler kazandınız.'
+        message_el.innerText = 'Tebrikler Kazandınız.'
     }
 }
 
@@ -43,6 +45,19 @@ function updateWrongLetters(){
             item.style.display = 'none';
         }
     });
+
+    if(wrongLetters.length === items.length){
+        popup.style.display = 'flex';
+        popup_hata.style.backgroundColor='red';
+        message_el.innerText = 'Malesef Kaybettiniz.'
+    }
+}
+function displaymessage(){
+    message.classList.add('show');
+
+    setTimeout(function(){
+        message.classList.remove('show');
+    },2000)
 }
 
 window.addEventListener('keydown',function(e){
@@ -54,13 +69,15 @@ window.addEventListener('keydown',function(e){
                 displayWord();
             }else{
                 // bu harfi zaten eklediniz.
-                console.log('bu harfi zaten eklediniz.')
+               displaymessage();
             }
         }else{
             if(!wrongLetters.includes(letter)){
                 wrongLetters.push(letter);
                 updateWrongLetters();
-                console.log('hatalı harfleri güncelle.')
+            }
+            else{
+                displaymessage();
             }
         }
     }
