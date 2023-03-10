@@ -5,13 +5,14 @@ const message_el = document.getElementById('success-message');
 const wrongLetters_el = document.getElementById('wrong-letters');
 const items = document.querySelectorAll('.item');
 const message = document.getElementById('message');
+const PlayAgainBtn = document.getElementById('play-again');
 
 const correctLetters = [];
 const wrongLetters = [];
-const selectedWord = getRandomWord();
+let selectedWord = getRandomWord();
 
 function getRandomWord(){
-    const words = ["javascript", "css", "java", "html","python"];
+    const words = ["javascrıpt", "css", "java", "html","python","sql","yazılım"];
     return words[Math.floor(Math.random() * words.length)]
 }
 
@@ -59,6 +60,17 @@ function displaymessage(){
         message.classList.remove('show');
     },2000)
 }
+
+PlayAgainBtn.addEventListener('click', function(){
+    correctLetters.splice(0);
+    wrongLetters.splice(0);
+
+    selectedWord = getRandomWord();
+    displayWord();
+    updateWrongLetters();
+
+    popup.style.display='none';
+});
 
 window.addEventListener('keydown',function(e){
     if(e.keyCode >= 65 && e.keyCode <= 90){
